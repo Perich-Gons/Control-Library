@@ -1,0 +1,6 @@
+# Control only writes reviewed Markdown/JSON entries to this repository.
+*.log
+*.sqlite
+*.db
+.env
+__pycache__/
