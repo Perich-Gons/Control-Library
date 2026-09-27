@@ -1,13 +1,17 @@
 # Aportar a la biblioteca común
 
-`Control` será el repositorio central público. Las resoluciones no se escriben
-directamente en su rama principal.
+Control publica automáticamente una propuesta saneada cuando su usuario pulsa
+**Publicar automáticamente** tras una búsqueda externa. La publicación queda
+como una incidencia pública estructurada, no como un cambio directo de código
+ni una orden ejecutable.
 
-1. Control crea un borrador saneado tras una búsqueda externa.
-2. El usuario lo revisa en su instalación.
-3. Control crea una rama de propuesta en el *fork* del usuario.
-4. La propuesta se abre como Pull Request contra `Control`.
-5. Un mantenedor comprueba fuentes, compatibilidad y límites antes de aceptarla.
+Cada instalación usa su propia autenticación de GitHub. No comparte tokens ni
+recibe permisos de escritura sobre los equipos de otras personas.
 
-Cada instalación usa su propia autenticación de GitHub. No se comparten tokens
-ni se concede escritura directa sobre la biblioteca central.
+Antes de publicar, Control elimina rutas locales, credenciales, tokens,
+nombres de usuario, historial privado y salidas de terminal. La persona que
+publica debe comprobar que la solución y sus fuentes pueden hacerse públicas.
+
+La comunidad elige, verifica o marca como errónea/no aplicable cada propuesta.
+Control calcula los avisos por porcentaje de resultados y retira las que
+alcanzan el 75% de avisos negativos con al menos cinco resultados.

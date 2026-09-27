@@ -1,68 +1,56 @@
 # Protocolo de biblioteca común de Control
 
-La biblioteca común permite reutilizar soluciones sin otorgar a una respuesta
-externa capacidad de modificar otro equipo.
+La biblioteca común reutiliza soluciones sin entregar a una respuesta externa
+capacidad de modificar otro equipo. Cada instalación conserva su executor,
+permisos, mantenimiento, copia, verificación y reversión.
 
 ## Ciclo de una petición
 
-1. **Consulta local.** Control revisa su catálogo operativo, servicios,
-   versiones, modelos y resoluciones guardadas localmente.
-2. **Biblioteca común.** Si no existe una solución local suficiente, consulta
-   el índice público de `Control` con intención, capacidades necesarias y
-   versiones relevantes. Devuelve todas las coincidencias encontradas; la interfaz
-   las presenta como tarjetas desplegables y permite filtrar por estado, componente
-   y compatibilidad.
-3. **Decisión visible.** El usuario ve una tarjeta desplegable por cada
-   coincidencia. La cabecera muestra título, estado y compatibilidad; el detalle
-   contiene la pregunta almacenada, la solución, fuentes, fecha, límites y
-   versiones. Puede abrir una propuesta, pedir contraste externo o descartarla.
-4. **Validación local.** Elegir una propuesta no la ejecuta. Control compara
-   la propuesta con el inventario y las políticas de esa instalación, genera
-   un plan y aplica los gates habituales: permiso, mantenimiento cuando
-   proceda, copia, ejecución registrada, verificación y reversión.
-5. **Ayuda externa.** Solo si el usuario lo solicita, Control realiza la
-   búsqueda externa de solo lectura.
-6. **Aportación.** La respuesta externa se convierte en un borrador saneado.
-   El usuario puede proponerlo a la biblioteca desde su fork mediante Pull
-   Request.
+1. **Consulta local.** Control revisa catálogo, servicios, versiones, modelos y
+   conocimiento local.
+2. **Biblioteca común.** Si no hay una resolución local suficiente, busca en la
+   biblioteca pública y devuelve todas las coincidencias técnicas relevantes.
+3. **Decisión visible.** Las coincidencias aparecen en una ventana propia con la
+   pregunta, solución, compatibilidad, fuentes, experiencia comunitaria y
+   advertencias. Elegir una nunca ejecuta cambios.
+4. **Validación local.** Control contrasta la propuesta con la instalación y
+   crea un plan; los cambios siguen los gates habituales: permiso,
+   mantenimiento cuando corresponda, copia, ejecución registrada, verificación
+   y reversión.
+5. **Ayuda externa.** Solo por petición explícita del usuario, Control realiza
+   una búsqueda pública de solo lectura.
+6. **Publicación automática.** Una conclusión externa saneada puede publicarse
+   de inmediato como una propuesta pública de GitHub. No contiene rutas,
+   credenciales, usuarios, registros de terminal ni inventarios particulares.
 
-## Estados de una entrada
+## Calidad comunitaria
 
-- `draft`: borrador local, aún no compartido.
-- `proposed`: propuesta pública pendiente de revisión.
-- `verified`: resolución aceptada y comprobada por mantenedores.
-- `superseded`: resolución sustituida por otra más reciente.
-- `rejected`: propuesta no utilizable; se conserva solo en la trazabilidad de
-  contribución, no se ofrece como solución.
+Cada propuesta pública usa reacciones de cuentas GitHub independientes:
 
-Las propuestas `proposed` pueden mostrarse como alternativas, claramente
-marcadas. Solo una entrada `verified` puede ser recomendada por defecto, y
-ninguna entrada se ejecuta sin validar la compatibilidad local.
+- 👍 **Elegida**: encaja con el caso de la persona.
+- 🎉 **Verificada**: terminó correctamente tras la comprobación local.
+- 👎 **Errónea o no aplicable**: no era compatible o no resolvió el caso.
 
-## Índice público
+La popularidad no decide si una propuesta es correcta. Control calcula el
+porcentaje de avisos negativos sobre los resultados (`verificada + errónea/no
+aplicable`) y no clasifica hasta reunir cinco resultados:
 
-El repositorio `Control` mantendrá `knowledge/index.json`. Cada registro
-incluye un identificador, título, resumen, etiquetas semánticas, estado,
-versiones/entornos compatibles, enlace a la entrada, fuentes y fecha de
-revisión. Esto permite buscar sin descargar todo el repositorio.
+| Avisos negativos | Estado mostrado | Comportamiento |
+| --- | --- | --- |
+| Menos de 5 resultados | Sin datos suficientes | Se muestra sin recomendación. |
+| 0–24% | Respaldada | Se muestra como alternativa normal. |
+| 25–49% | Con advertencias | Se muestra un aviso antes de elegir. |
+| 50–74% | Riesgo alto | Se muestra, pero exige comprobación profunda. |
+| 75–100% | Anulada | No se ofrece como candidata. |
 
-No se incluyen rutas locales, credenciales, tokens, nombres de usuarios,
-registros de terminal ni inventarios particulares de una instalación.
+Estos estados se recalculan al leer la biblioteca; no requieren una revisión
+manual ni permiten que una persona altere los totales varias veces.
 
-## Uso comunitario
+## Datos públicos
 
-Cada resolución publicada tendrá una ficha comunitaria vinculada en GitHub. Al
-seleccionarla, Control podrá registrar una reacción del usuario autenticado:
-
-- **Elegida**: la persona la consideró adecuada para su caso.
-- **Verificada en su equipo**: la persona confirmó que terminó correctamente
-  tras las comprobaciones locales.
-- **No aplicable**: la propuesta no era compatible o no resolvió su caso.
-
-GitHub cuenta una reacción por cuenta y resolución, por lo que el total
-representa usuarios distintos y no pulsaciones repetidas. Al buscar de nuevo,
-Control mostrará los tres contadores junto a cada tarjeta, por ejemplo:
-`Elegida por 20 usuarios · Verificada por 16 · No aplicable para 2`.
-
-Los contadores ayudan a decidir, pero no sustituyen la validación de versión,
-hardware, permisos y políticas de cada instalación.
+Las propuestas se representan como incidencias públicas estructuradas de la
+biblioteca, con un identificador, pregunta, solución, etiquetas,
+compatibilidad, fuentes y fecha. El índice `knowledge/index.json` conserva la
+compatibilidad con instalaciones y entradas anteriores. Una instalación puede
+leer la biblioteca sin autenticarse; solo publicar o valorar exige su propia
+cuenta GitHub.
