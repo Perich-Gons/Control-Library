@@ -103,6 +103,16 @@
       },
       "additionalProperties": false
     },
+    "validation": {
+      "type": "object",
+      "required": ["checks", "expected", "rollback"],
+      "properties": {
+        "checks": {"type": "array", "minItems": 1, "items": {"type": "string", "maxLength": 500}},
+        "expected": {"type": "string", "maxLength": 1000},
+        "rollback": {"type": "string", "maxLength": 1000}
+      },
+      "additionalProperties": false
+    },
     "source_kind": {
       "enum": [
         "local",
