@@ -1,5 +1,106 @@
 {
   "$schema_version": 1,
   "purpose": "Public index of Control community resolutions.",
-  "entries": []
+  "entries": [
+    {
+      "created_at": "2026-09-27T00:00:00+00:00",
+      "source_kind": "community-test",
+      "tags": [
+        "prueba",
+        "biblioteca",
+        "documentacion",
+        "control"
+      ],
+      "compatibility": {
+        "notes": [
+          "Dato temporal de prueba; no aplicar."
+        ]
+      },
+      "sources": [],
+      "path": "TEST-DATA",
+      "id": "test-community-supported",
+      "title": "PRUEBA · Propuesta respaldada",
+      "question": "PRUEBA: documentación técnica de Control",
+      "solution": "Es un dato temporal para verificar el estado respaldado.",
+      "status": "proposed",
+      "selection_count": 0,
+      "verified_count": 5,
+      "not_applicable_count": 0
+    },
+    {
+      "created_at": "2026-09-27T00:00:00+00:00",
+      "source_kind": "community-test",
+      "tags": [
+        "prueba",
+        "biblioteca",
+        "documentacion",
+        "control"
+      ],
+      "compatibility": {
+        "notes": [
+          "Dato temporal de prueba; no aplicar."
+        ]
+      },
+      "sources": [],
+      "path": "TEST-DATA",
+      "id": "test-community-warning",
+      "title": "PRUEBA · Propuesta con advertencia",
+      "question": "PRUEBA: documentación técnica de Control",
+      "solution": "Es un dato temporal para verificar la advertencia.",
+      "status": "proposed",
+      "selection_count": 0,
+      "verified_count": 3,
+      "not_applicable_count": 2
+    },
+    {
+      "created_at": "2026-09-27T00:00:00+00:00",
+      "source_kind": "community-test",
+      "tags": [
+        "prueba",
+        "biblioteca",
+        "documentacion",
+        "control"
+      ],
+      "compatibility": {
+        "notes": [
+          "Dato temporal de prueba; no aplicar."
+        ]
+      },
+      "sources": [],
+      "path": "TEST-DATA",
+      "id": "test-community-high-risk",
+      "title": "PRUEBA · Propuesta de riesgo alto",
+      "question": "PRUEBA: documentación técnica de Control",
+      "solution": "Es un dato temporal para verificar el riesgo alto.",
+      "status": "proposed",
+      "selection_count": 0,
+      "verified_count": 2,
+      "not_applicable_count": 3
+    },
+    {
+      "created_at": "2026-09-27T00:00:00+00:00",
+      "source_kind": "community-test",
+      "tags": [
+        "prueba",
+        "biblioteca",
+        "documentacion",
+        "control"
+      ],
+      "compatibility": {
+        "notes": [
+          "Dato temporal de prueba; no aplicar."
+        ]
+      },
+      "sources": [],
+      "path": "TEST-DATA",
+      "id": "test-community-annulled",
+      "title": "PRUEBA · Propuesta anulada",
+      "question": "PRUEBA: documentación técnica de Control",
+      "solution": "Es un dato temporal que debe quedar oculto.",
+      "status": "proposed",
+      "selection_count": 0,
+      "verified_count": 1,
+      "not_applicable_count": 4
+    }
+  ]
 }
